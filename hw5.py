@@ -1,13 +1,14 @@
 
 # coding: utf-8
 
-# In[5]:
+# In[7]:
 
 
 import string
 import csv
 import json
 import pickle
+from collections import Counter
 
 def main(filename):
     
@@ -20,11 +21,10 @@ def main(filename):
     for line in lines:
         words = line.split()
         for word in words:
-            for ch in string.punctuation:                                                                                                     
-                word=word.strip(ch)
-            all_words.append(word)
+            word.strip(string.punctuation)
+            if word:
+                all_words.append(word)
     df = set(all_words)
-    df.remove('')
     for w in df:
         counter = all_words.count(w)
         list1.append(w)
@@ -40,6 +40,7 @@ def main(filename):
         csv_file.close()
 
     dictionary=dict()
+
     for t in range(0,len(list1),2):
         dictionary[list1[t]]=list1[t+1]
     with open("wordcount.json","w+",newline='') as json_file:
