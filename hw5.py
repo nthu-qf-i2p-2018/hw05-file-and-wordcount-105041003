@@ -42,7 +42,7 @@ def main(filename):
 
     for t in range(0,len(list1),2):
         dictionary[list1[t]]=list1[t+1]
-    with open("wordcount.json","w",newline='') as json_file:
+    with open("wordcount.json","w") as json_file:
         json.dump(dictionary,json_file)
         
     with open("wordcount.pkl","wb") as pickle_file:
